@@ -46,6 +46,3 @@ TRIPADVISOR_SPECS = [
         "default_type": "offer",
     },
 ]
-
-EXPEDIA_HOTELS_SPECS = []
-GENERIC_EXTERNAL_SPECS = []

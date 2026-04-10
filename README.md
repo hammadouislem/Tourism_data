@@ -8,7 +8,7 @@ Modular pipeline for collecting, cleaning, analyzing, and visualizing tourism li
 
 ## Features
 
-- **Collection:** Web scrapers + Booking / TripAdvisor-style CSV adapters + `data/external/` auto-import + optional Kaggle Hotel Booking Demand (`data/kaggle/`, `scraping/kaggle_hotel_booking_import.py`).
+- **Collection:** Booking / TripAdvisor-style CSV adapters (`data/feeds/`), `data/external/` auto-import, optional Kaggle Hotel Booking Demand (`data/kaggle/`, `scraping/kaggle_hotel_booking_import.py`).
 - **Cleaning:** Deduplication, duration defaults, **rating imputation** (sampled from observed ratings or uniform spread when none exist).
 - **Row cap:** After merge, optional cap (default **30k** rows), stratified by `source` when possible (`PIPELINE_MAX_ROWS` in `.env`).
 - **Analysis:** Summary by type, matplotlib charts under `output/viz/`, insights CSVs under `output/insights/`.
@@ -25,7 +25,7 @@ Modular pipeline for collecting, cleaning, analyzing, and visualizing tourism li
 tourism_analysis/
 ├── analysis/          # analysis, clustering, insights, sentiment, recommendation
 ├── processing/      # clean_data, merge_data
-├── scraping/        # scrapers, adapters, Kaggle import, external_import
+├── scraping/        # CSV adapters, Kaggle import, external_import
 ├── visualization/   # Plotly dashboard (HTML + figure for Streamlit)
 ├── utils/             # schema, env, currency, Kaggle helpers
 ├── scripts/           # download_kaggle_hotel_booking.py
@@ -110,8 +110,7 @@ Edit **`scraping/source_specs.py`** for Booking/TripAdvisor feed paths and colum
 
 ## Notes on sources and ethics
 
-- Respect each site’s **terms of use**; prefer **exported CSVs** or **public datasets** over aggressive scraping.
-- Update selectors in scrapers when HTML changes.
+- Respect each site’s **terms of use**; prefer **exported CSVs** or **public datasets**.
 - Kaggle data: follow the dataset license on the Kaggle page.
 
 ---
