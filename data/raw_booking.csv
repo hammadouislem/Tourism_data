@@ -1,0 +1,17 @@
+name,type,location,price,duration,rating,source,review_text
+Seaside Inn Barcelona,hotel,Barcelona,120.0,2.0,4.5,booking:export_sample,Wonderful location near the beach.
+Budget Stay London,hostel,London,65.0,1.0,3.8,booking:export_sample,Good value for money.
+Grand Plaza Paris,hotel,Paris,210.0,3.0,4.7,booking:export_sample,Excellent breakfast.
+Riverside Suites Amsterdam,apartment,Amsterdam,155.0,2.0,4.2,booking:export_sample,Spacious and modern.
+Harbor View Lisbon,hotel,Lisbon,98.0,2.0,4.6,booking:export_sample,Charming neighborhood.
+Downtown Loft Berlin,apartment,Berlin,88.0,1.0,3.9,booking:export_sample,Stylish place.
+Family Resort Rome,hotel,Rome,245.0,4.0,4.8,booking:export_sample,Kids loved the pool.
+Eco Lodge Copenhagen,hotel,Copenhagen,175.0,2.0,4.4,booking:export_sample,Sustainable and cozy.
+Skyline Hotel Dubai,hotel,Dubai,310.0,2.0,4.9,booking:export_sample,Luxury experience.
+Coastal B&B Nice,bed_and_breakfast,Nice,135.0,2.0,4.3,booking:export_sample,Lovely hosts.
+Urban Pod Tokyo,capsule_hotel,Tokyo,45.0,1.0,4.1,booking:export_sample,Unique experience.
+Lake House Zurich,hotel,Zurich,285.0,3.0,4.7,booking:export_sample,Peaceful setting.
+Market Square Krakow,hotel,Krakow,72.0,2.0,4.5,booking:export_sample,Historic building.
+Desert Oasis Marrakech,riad,Marrakech,160.0,3.0,4.6,booking:export_sample,Beautiful courtyard.
+Harbor Inn Sydney,hotel,Sydney,195.0,2.0,4.4,booking:export_sample,Close to Opera House.
+Airport Motel Oslo,motel,Oslo,55.0,1.0,,booking:export_sample,Basic room near the airport.

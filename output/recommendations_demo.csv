@@ -1,0 +1,16 @@
+query_name,name,type,location,price,duration,rating,source,review_text,sentiment_compound,sentiment_pos,sentiment_neg,sentiment_neu,cost_per_day,cluster,cluster_label,similarity,query_index,seed_index
+Resort Hotel — booking 30729,Resort Hotel — booking 23030,hotel,PRT,39.0,1.0,5.0,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,39.0,0,budget,0.9999721652677596,0,0
+Resort Hotel — booking 30729,Resort Hotel — booking 20372,hotel,PRT,40.0,1.0,5.0,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,40.0,0,budget,0.9998003065268872,0,0
+Resort Hotel — booking 30729,Resort Hotel — booking 21251,hotel,PRT,40.0,1.0,5.0,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,40.0,0,budget,0.9998003065268872,0,0
+Resort Hotel — booking 30729,City Hotel — booking 85646,hotel,PRT,40.0,1.0,5.0,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,40.0,0,budget,0.9998003065268872,0,0
+Resort Hotel — booking 30729,Resort Hotel — booking 33245,hotel,PRT,35.0,1.0,5.0,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,35.0,0,budget,0.9991388649366535,0,0
+City Hotel — booking 65631,City Hotel — booking 64716,hotel,PRT,85.0,3.0,3.5,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,28.333333333333332,0,budget,1.0,15000,15000
+City Hotel — booking 65631,City Hotel — booking 45269,hotel,PRT,85.67,3.0,3.5,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,28.55666666666667,0,budget,0.9999861325676738,15000,15000
+City Hotel — booking 65631,City Hotel — booking 61674,hotel,PRT,88.0,3.0,3.5,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,29.333333333333332,0,budget,0.9997202659745126,15000,15000
+City Hotel — booking 65631,City Hotel — booking 60024,hotel,PRT,89.0,3.0,3.5,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,29.666666666666668,0,budget,0.9995014629916772,15000,15000
+City Hotel — booking 65631,City Hotel — booking 59988,hotel,PRT,89.0,3.0,3.5,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,29.666666666666668,0,budget,0.9995014629916772,15000,15000
+City Hotel — booking 47827,City Hotel — booking 72224,hotel,PRT,78.0,1.0,4.4,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,78.0,1,mid-range,0.9999877189569845,29999,29999
+City Hotel — booking 47827,City Hotel — booking 92524,hotel,PRT,79.0,1.0,4.4,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,79.0,1,mid-range,0.999933676560144,29999,29999
+City Hotel — booking 47827,City Hotel — booking 116079,hotel,PRT,77.0,1.0,4.4,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,77.0,1,mid-range,0.9997675997144102,29999,29999
+City Hotel — booking 47827,City Hotel — booking 82187,hotel,PRT,80.0,1.0,4.4,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,80.0,1,mid-range,0.9996121295920294,29999,29999
+City Hotel — booking 47827,City Hotel — booking 41072,hotel,PRT,80.0,1.0,4.4,kaggle:hotel_booking_demand,,0.0,0.0,0.0,1.0,80.0,1,mid-range,0.9996121295920294,29999,29999

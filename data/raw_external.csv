@@ -1,0 +1,21 @@
+name,type,location,price,duration,rating,source,review_text
+Mediterranean Cruise 7D,offer,Barcelona,1299.0,7.0,4.5,external:package_offers_sample,<NA>
+Desert Safari Weekend,offer,Dubai,420.0,2.0,4.7,external:package_offers_sample,<NA>
+Alpine Ski Package,offer,Zurich,1890.0,5.0,4.6,external:package_offers_sample,<NA>
+City Break Rome,offer,Rome,550.0,4.0,4.4,external:package_offers_sample,<NA>
+Northern Lights Tour,offer,Oslo,2400.0,6.0,4.8,external:package_offers_sample,<NA>
+Beach Resort All-Inclusive,offer,Maldives,3200.0,10.0,4.9,external:package_offers_sample,<NA>
+Grand Plaza Hotel,offer,Paris,189.0,,4.5,external:tourism_listings,Amazing stay! Beautiful views and excellent service.
+Sunset Resort,offer,Barcelona,245.0,,4.8,external:tourism_listings,Perfect location. Would definitely come back.
+City Center Inn,offer,London,120.0,,3.9,external:tourism_listings,Good value but rooms are small.
+Mountain View Lodge,offer,Zurich,320.0,,4.9,external:tourism_listings,Stunning scenery. Best hotel ever!
+Harbor Hotel,offer,Barcelona,156.0,,4.2,external:tourism_listings,Close to the port. Quiet rooms.
+Riverside Suites,offer,Paris,210.0,,4.6,external:tourism_listings,Elegant decor and helpful staff.
+Downtown Budget Stay,offer,London,85.0,,3.5,external:tourism_listings,Basic but clean. Great for backpackers.
+Alpine Retreat,offer,Zurich,280.0,,4.7,external:tourism_listings,Mountain views from every window.
+Beach Paradise,offer,Barcelona,195.0,,4.3,external:tourism_listings,Steps from the beach. Pool area is nice.
+Skyline Suites London,offer,London,186.0,,4.6,external:tourism_listings,Modern rooms. Tube station nearby.
+Metro Hotel London,offer,London,201.0,,3.5,external:tourism_listings,Convenient location. Breakfast could improve.
+Lakeside Resort London,offer,London,167.0,,3.8,external:tourism_listings,Peaceful area. Older building.
+Seaside Villa Zurich,offer,Zurich,210.0,,3.2,external:tourism_listings,Pricey for what you get.
+Royal Palace Hotel Zurich,offer,Zurich,271.0,,5.0,external:tourism_listings,Five-star service throughout.

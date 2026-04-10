@@ -1,0 +1,26 @@
+name,location,rating,price,source,sentiment_compound
+Resort Hotel — booking 28844,FRA,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 83507,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 42512,ESP,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 102403,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 79109,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 40341,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 85433,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 104087,PRT,5.0,0.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 5853,PRT,5.0,8.0,kaggle:hotel_booking_demand,0.0
+City Hotel — booking 103229,TUR,5.0,18.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 21927,PRT,5.0,25.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 19537,FRA,5.0,25.11,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 18155,GBR,5.0,25.92,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 13805,,5.0,28.5,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 21930,PRT,5.0,29.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 22272,PRT,5.0,29.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 3587,PRT,5.0,29.16,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 16936,PRT,5.0,30.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 20284,GBR,5.0,31.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 19416,PRT,5.0,34.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 32072,ESP,5.0,34.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 32835,DEU,5.0,34.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 31197,ESP,5.0,34.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 30445,FRA,5.0,35.0,kaggle:hotel_booking_demand,0.0
+Resort Hotel — booking 33245,PRT,5.0,35.0,kaggle:hotel_booking_demand,0.0

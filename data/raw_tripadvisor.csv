@@ -1,0 +1,16 @@
+name,type,location,price,duration,rating,source,review_text
+Old Town Walking Tour,tour,Prague,48.0,1.0,4.6,tripadvisor:export_sample,Knowledgeable guide.
+Mountain Day Trip,tour,Zurich,189.0,1.0,4.8,tripadvisor:export_sample,Breathtaking views.
+Food & Wine Tasting,experience,Rome,95.0,1.0,4.7,tripadvisor:export_sample,Delicious pasta.
+Museum Pass Vienna,ticket,Vienna,65.0,2.0,4.3,tripadvisor:export_sample,Skipped the lines.
+Sunset Cruise Santorini,cruise,Santorini,120.0,1.0,4.9,tripadvisor:export_sample,Magical sunset.
+City Bike Tour Amsterdam,tour,Amsterdam,35.0,1.0,4.4,tripadvisor:export_sample,Easy ride through canals.
+Castle Day Trip Edinburgh,tour,Edinburgh,72.0,1.0,4.5,tripadvisor:export_sample,Foggy but impressive.
+Northern Lights Chase,tour,Tromso,210.0,1.0,4.2,tripadvisor:export_sample,We saw the lights!
+Kayak Adventure Dubrovnik,activity,Dubrovnik,85.0,1.0,4.6,tripadvisor:export_sample,Clear water.
+Street Art Walk,tour,Berlin,28.0,1.0,4.1,tripadvisor:export_sample,Interesting neighborhoods.
+Temple Tour Kyoto,tour,Kyoto,55.0,1.0,4.7,tripadvisor:export_sample,Peaceful temples.
+Wildlife Safari Cape Town,safari,Cape Town,165.0,1.0,4.8,tripadvisor:export_sample,Saw lions.
+Snorkel Day Trip,activity,Cairns,140.0,1.0,4.5,tripadvisor:export_sample,Reef was vibrant.
+Historic Quarter Quito,tour,Quito,42.0,1.0,4.0,tripadvisor:export_sample,Altitude was tough.
+Night Market Tour Taipei,food_tour,Taipei,38.0,1.0,4.6,tripadvisor:export_sample,Amazing street food.

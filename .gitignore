@@ -1,0 +1,11 @@
+# Kaggle downloads (large; keep local only)
+data/kaggle/*.csv
+data/kaggle/*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.env
