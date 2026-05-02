@@ -10,7 +10,7 @@ Modular pipeline for collecting, cleaning, analyzing, and visualizing tourism li
 
 - **Collection:** Booking / TripAdvisor-style CSV adapters (`data/feeds/`), `data/external/` auto-import, optional Kaggle Hotel Booking Demand (`data/kaggle/`, `scraping/kaggle_hotel_booking_import.py`).
 - **Cleaning:** Deduplication, duration defaults, **rating imputation** (sampled from observed ratings or uniform spread when none exist).
-- **Row cap:** After merge, optional cap (default **30k** rows), stratified by `source` when possible (`PIPELINE_MAX_ROWS` in `.env`).
+- **Row cap:** After merge, optional cap (default **30k** rows). Sampling is **balanced by `source`** (roughly equal rows per feed, random within each) so charts are not dominated by one source; set `PIPELINE_PROPORTIONAL_SAMPLE=1` to restore proportional stratified sampling (`PIPELINE_MAX_ROWS` in `.env`).
 - **Analysis:** Summary by type, matplotlib charts under `output/viz/`, insights CSVs under `output/insights/`.
 - **ML:** K-means price tiers, content-based recommendations (`analysis/recommendation.py`).
 - **Sentiment:** VADER on `review_text` → `output/enriched_listings.csv`.
@@ -76,6 +76,7 @@ Copy `.env.example` to `.env` and set:
 
 - `KAGGLE_USERNAME` / `KAGGLE_KEY` — for Kaggle API download (or place `kaggle.json` in `~/.kaggle/`).
 - `PIPELINE_MAX_ROWS` — default `30000`; use `0` for no cap.
+- `PIPELINE_PROPORTIONAL_SAMPLE` — set to `1` for **proportional** stratified sampling by `source` (matches raw mix). Default is **balanced** random per source for more even charts.
 - `PRICE_CURRENCY` — e.g. `EUR`, `USD` (labels only).
 
 ### 3. Full pipeline

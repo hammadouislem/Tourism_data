@@ -19,10 +19,11 @@ from utils.currency import (
 )
 from utils.env_loader import load_project_dotenv
 from utils.pipeline_paths import analytics_input_path
+from visualization.express_charts import apply_chart_theme
 
 ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
 OUTPUT_HTML = os.path.join(ROOT_DIR, "output", "dashboard.html")
-MAX_SCATTER_POINTS = 12_000
+MAX_SCATTER_POINTS = 20_000
 
 
 def build_dashboard_figure(
@@ -61,13 +62,13 @@ def build_dashboard_figure(
 
     popular_path = os.path.join(insights_dir, "popular_destinations.csv")
     if os.path.isfile(popular_path):
-        popular = pd.read_csv(popular_path, encoding="utf-8").head(15)
+        popular = pd.read_csv(popular_path, encoding="utf-8").head(18)
     else:
         popular = (
             df.groupby("location", as_index=False)
             .agg(listings=("name", "count"))
             .sort_values("listings", ascending=False)
-            .head(15)
+            .head(18)
         )
 
     cluster_counts = None
@@ -108,11 +109,16 @@ def build_dashboard_figure(
         horizontal_spacing=0.07,
     )
 
+    green_bar = popular["listings"]
     fig.add_trace(
         go.Bar(
             x=popular["location"],
             y=popular["listings"],
-            marker_color="#2563eb",
+            marker=dict(
+                color=green_bar,
+                colorscale=[[0, "#1b4332"], [0.5, "#40916c"], [1, "#95d5b2"]],
+                showscale=False,
+            ),
             name="Listings",
             showlegend=False,
         ),
@@ -121,7 +127,12 @@ def build_dashboard_figure(
     )
 
     if cluster_counts is not None and not cluster_counts.empty:
-        palette = {"budget": "#22c55e", "mid-range": "#eab308", "premium": "#a855f7", "unclassified": "#94a3b8"}
+        palette = {
+            "budget": "#52b788",
+            "mid-range": "#f4d35e",
+            "premium": "#c084fc",
+            "unclassified": "#94a3b8",
+        }
         colors = [palette.get(str(t).lower(), "#64748b") for t in cluster_counts["tier"]]
         fig.add_trace(
             go.Bar(
@@ -139,7 +150,7 @@ def build_dashboard_figure(
             go.Bar(
                 x=["(no cluster file)"],
                 y=[0],
-                marker_color="#e2e8f0",
+                marker_color="#475569",
                 showlegend=False,
                 hovertemplate="Run pipeline through clustering<extra></extra>",
             ),
@@ -156,7 +167,17 @@ def build_dashboard_figure(
             x=sub["price"],
             y=sub["rating"],
             mode="markers",
-            marker=dict(size=6, color=sub["rating"], colorscale="Viridis", opacity=0.35, showscale=True),
+            marker=dict(
+                size=7,
+                color=sub["rating"],
+                colorscale=[[0, "#1b4332"], [0.5, "#40916c"], [1, "#d8f3dc"]],
+                opacity=0.45,
+                showscale=True,
+                colorbar=dict(
+                    title=dict(text="Rating", side="right", font=dict(color="#f5f0e6", size=11)),
+                    tickfont=dict(color="#f5f0e6"),
+                ),
+            ),
             text=hover,
             hovertemplate=f"%{{text}}<br>{cur} price: %{{x:.2f}}<br>Rating: %{{y:.2f}}<extra></extra>",
             name="Listings",
@@ -172,7 +193,7 @@ def build_dashboard_figure(
             go.Histogram(
                 x=cpd,
                 nbinsx=min(50, max(20, int(len(cpd) ** 0.5))),
-                marker_color="#0d9488",
+                marker_color="#52b788",
                 name="cpd",
                 showlegend=False,
             ),
@@ -184,7 +205,7 @@ def build_dashboard_figure(
         go.Histogram(
             x=df["rating"].dropna(),
             nbinsx=min(40, max(15, int(len(df) ** 0.25))),
-            marker_color="#059669",
+            marker_color="#74c69d",
             name="rating",
             showlegend=False,
         ),
@@ -200,7 +221,7 @@ def build_dashboard_figure(
             go.Histogram(
                 x=sc,
                 nbinsx=30,
-                marker_color="#d97706",
+                marker_color="#ee964b",
                 name="sentiment",
                 showlegend=False,
             ),
@@ -209,21 +230,19 @@ def build_dashboard_figure(
         )
     else:
         fig.add_trace(
-            go.Histogram(x=[], nbinsx=1, marker_color="#cbd5e1", showlegend=False),
+            go.Histogram(x=[], nbinsx=1, marker_color="#475569", showlegend=False),
             row=3,
             col=2,
         )
 
-    title = f"Tourism analytics dashboard <span style='font-size:13px'>({n_rows:,} listings · prices in {cur})</span>"
-    if corr_txt:
-        title += f"<br><span style='font-size:12px;color:#64748b'>{corr_txt}</span>"
-
-    fig.update_layout(
-        title_text=title,
-        height=1100,
-        template="plotly_white",
-        font=dict(family="system-ui, Segoe UI, sans-serif", size=12),
+    title = (
+        f"Tourism analytics dashboard <span style='font-size:13px;color:#c4bdb0'>"
+        f"({n_rows:,} listings · prices in {cur})</span>"
     )
+    if corr_txt:
+        title += f"<br><span style='font-size:12px;color:#95d5b2'>{corr_txt}</span>"
+
+    fig.update_layout(title_text=title, height=1180)
     fig.update_xaxes(tickangle=35, row=1, col=1)
     fig.update_xaxes(title_text=price_axis_label(), row=2, col=1)
     fig.update_yaxes(title_text="Rating", row=2, col=1)
@@ -231,6 +250,11 @@ def build_dashboard_figure(
     fig.update_xaxes(title_text="Rating", row=3, col=1)
     fig.update_xaxes(title_text="Compound score", row=3, col=2)
 
+    fig = apply_chart_theme(fig)
+    fig.update_layout(
+        height=1180,
+        margin=dict(t=100, l=56, r=36, b=52),
+    )
     return fig
 
 

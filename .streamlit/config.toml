@@ -1,0 +1,11 @@
+# Dark shell + forest green panels + cream text (T-GEN–style palette)
+[theme]
+base = "dark"
+primaryColor = "#4ade80"
+backgroundColor = "#141915"
+secondaryBackgroundColor = "#1b4332"
+textColor = "#f5f0e6"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"

@@ -21,38 +21,87 @@ def _pipeline_max_rows() -> Optional[int]:
     return int(raw)
 
 
+def _proportional_stratified_cap(df: pd.DataFrame, cap: int) -> Optional[pd.DataFrame]:
+    """Optional: keep original population mix (charts mirror raw skew)."""
+    if "source" not in df.columns or df["source"].nunique() <= 1:
+        return None
+    try:
+        from sklearn.model_selection import train_test_split
+
+        strat = df["source"].astype(str)
+        out, _ = train_test_split(df, train_size=cap, stratify=strat, random_state=42)
+        return out.sample(frac=1, random_state=43).reset_index(drop=True)
+    except ValueError:
+        return None
+
+
+def _balanced_random_cap(df: pd.DataFrame, cap: int) -> pd.DataFrame:
+    """
+    ~Equal random draw per `source` (up to cap), then fill any shortfall randomly.
+    Makes source mix in charts more even than proportional stratified sampling.
+    """
+    work = df.reset_index(drop=True)
+    src = work["source"].astype(str)
+    sources = sorted(src.unique())
+    k = len(sources)
+    per = cap // k
+    remainder = cap % k
+    chosen: list[int] = []
+    for i, s in enumerate(sources):
+        idx = work.index[src == s].tolist()
+        n_take = min(len(idx), per + (1 if i < remainder else 0))
+        if n_take <= 0:
+            continue
+        picked = work.loc[idx].sample(n=n_take, random_state=42 + i).index.tolist()
+        chosen.extend(picked)
+    chosen_set = set(chosen)
+    if len(chosen) < cap:
+        pool = [i for i in work.index if i not in chosen_set]
+        need = min(cap - len(chosen), len(pool))
+        if need > 0:
+            extra = work.loc[pool].sample(n=need, random_state=99).index.tolist()
+            chosen.extend(extra)
+    out = work.loc[chosen]
+    return out.sample(frac=1, random_state=43).reset_index(drop=True)
+
+
 def apply_row_cap(df: pd.DataFrame) -> pd.DataFrame:
     if df.empty:
         return df
     cap = _pipeline_max_rows()
+    proportional = os.environ.get("PIPELINE_PROPORTIONAL_SAMPLE", "").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    )
+
     if cap is None or len(df) <= cap:
-        return df
+        out = df.sample(frac=1, random_state=43).reset_index(drop=True)
+        if cap is None:
+            print("[merge_data] No row cap (PIPELINE_MAX_ROWS=0); shuffled row order.")
+        else:
+            print("[merge_data] Row count under cap; shuffled row order.")
+        return out
 
-    # Prefer stratified sample by source so the cap is not "from the head" of concat order
-    # and small sources still appear. Shuffle final rows for a random order.
-    if "source" in df.columns and df["source"].nunique() > 1:
-        try:
-            from sklearn.model_selection import train_test_split
-
-            strat = df["source"].astype(str)
-            out, _ = train_test_split(
-                df,
-                train_size=cap,
-                stratify=strat,
-                random_state=42,
-            )
-            out = out.sample(frac=1, random_state=43).reset_index(drop=True)
+    if proportional:
+        out = _proportional_stratified_cap(df, cap)
+        if out is not None:
             print(
-                f"[merge_data] Capped to {cap:,} rows (stratified by `source`, "
-                "then shuffled — PIPELINE_MAX_ROWS)"
+                f"[merge_data] Capped to {cap:,} rows (proportional by `source`, "
+                "PIPELINE_PROPORTIONAL_SAMPLE) + shuffle."
             )
             return out
-        except ValueError:
-            pass
+    elif "source" in df.columns and df["source"].nunique() > 1:
+        out = _balanced_random_cap(df, cap)
+        print(
+            f"[merge_data] Capped to {len(out):,} rows (balanced random per `source`, "
+            f"target {cap:,} — PIPELINE_MAX_ROWS)."
+        )
+        return out
 
     out = df.sample(n=cap, random_state=42).reset_index(drop=True)
     out = out.sample(frac=1, random_state=43).reset_index(drop=True)
-    print(f"[merge_data] Capped to {cap:,} rows (random sample + shuffle, PIPELINE_MAX_ROWS)")
+    print(f"[merge_data] Capped to {cap:,} rows (uniform random + shuffle, PIPELINE_MAX_ROWS)")
     return out
 
 

@@ -144,9 +144,11 @@ def recommend_for_preferences(
     if min_rating is not None:
         work = work[work["rating"] >= min_rating]
     if preferred_locations:
-        prefs = {str(p).strip().lower() for p in preferred_locations}
-        loc_mask = work["location"].astype(str).str.lower().isin(prefs)
-        if loc_mask.any():
+        prefs = {str(p).strip().lower() for p in preferred_locations if str(p).strip()}
+        if prefs:
+            loc_mask = work["location"].astype(str).str.lower().isin(prefs)
+            if not loc_mask.any():
+                return pd.DataFrame()
             work = work[loc_mask]
 
     if len(work) <= 1:
