@@ -1,10 +1,3 @@
-requests
-pandas
-numpy
-scikit-learn
-matplotlib
-plotly
-vaderSentiment
-kaggle
-streamlit
-fastapi
+# Minimal deps for Vercel (Lambda bundle must stay under ~500 MB).
+# Local / pipeline: pip install -r requirements-pipeline.txt
+fastapi>=0.109.0

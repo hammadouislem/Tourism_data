@@ -1,0 +1,8 @@
+# Shrink serverless upload (pipeline code is unused by app.py at runtime).
+data/
+output/
+.git/
+**/__pycache__/
+*.pyc
+.venv/
+venv/

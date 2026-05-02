@@ -42,7 +42,8 @@ tourism_analysis/
 │   └── insights/
 ├── main.py
 ├── streamlit_app.py
-├── requirements.txt
+├── requirements.txt          # minimal (Vercel / FastAPI only)
+├── requirements-pipeline.txt # full local stack
 └── README.md
 ```
 
@@ -66,9 +67,13 @@ tourism_analysis/
 
 ### 1. Install
 
+**Local pipeline + Streamlit** (pandas, scikit-learn, Plotly, etc.):
+
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-pipeline.txt
 ```
+
+The root **`requirements.txt`** only lists **FastAPI** so Vercel’s Python bundle stays under the Lambda size limit. Do not use it alone for `main.py` / Streamlit.
 
 ### 2. Environment (optional)
 

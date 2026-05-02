@@ -39,7 +39,7 @@ _LANDING = """<!DOCTYPE html>
   <p>Vercel serves this FastAPI app. The interactive UI is <strong>Streamlit</strong> — run it on your machine or
      <a href="https://streamlit.io/cloud" rel="noopener">Streamlit Community Cloud</a> (not on Vercel serverless).</p>
   <p>Local run:</p>
-  <pre>pip install -r requirements.txt
+  <pre>pip install -r requirements-pipeline.txt
 python main.py
 python -m streamlit run streamlit_app.py</pre>
   <p>Static Plotly export: <a href="/dashboard">/dashboard</a> (only if <code>output/dashboard.html</code> exists in the deployment).</p>
