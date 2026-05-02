@@ -1,6 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "python -c \"import sys; print('Python', sys.version.split()[0], '— FastAPI entry only')\"",
-  "builds": [{ "src": "app.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/(.*)", "dest": "app.py" }]
+  "$schema": "https://openapi.vercel.sh/vercel.json"
 }

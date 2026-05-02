@@ -1,0 +1,5 @@
+[project]
+name = "tourism-analytics"
+version = "0"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.109.0"]

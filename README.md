@@ -40,7 +40,8 @@ tourism_analysis/
 │   ├── dashboard.html
 │   ├── viz/           # matplotlib PNGs
 │   └── insights/
-├── main.py
+├── main.py              # CLI shim (runs pipeline)
+├── pipeline.py          # full pipeline implementation
 ├── streamlit_app.py
 ├── requirements.txt          # minimal (Vercel / FastAPI only)
 ├── requirements-pipeline.txt # full local stack

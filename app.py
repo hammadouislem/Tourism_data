@@ -1,19 +1,13 @@
 """
-Vercel serverless ASGI entry (FastAPI).
+Vercel ASGI entry (FastAPI only — no project imports).
 
-`main.py` is the offline data pipeline — it does not export `app`, so this file
-is the Python entry Vercel expects.
-
-Note: Streamlit cannot run on Vercel's Python runtime. Use this deployment for
-a landing page + optional static `output/dashboard.html`, or run Streamlit locally / on Streamlit Cloud.
+Streamlit and the data pipeline are not installed on Vercel; run them locally.
 """
-
-from __future__ import annotations
 
 from pathlib import Path
 
 from fastapi import FastAPI
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import HTMLResponse
 
 ROOT = Path(__file__).resolve().parent
 DASHBOARD_HTML = ROOT / "output" / "dashboard.html"
@@ -36,33 +30,36 @@ _LANDING = """<!DOCTYPE html>
 </head>
 <body>
   <h1>Tourism analytics</h1>
-  <p>Vercel serves this FastAPI app. The interactive UI is <strong>Streamlit</strong> — run it on your machine or
-     <a href="https://streamlit.io/cloud" rel="noopener">Streamlit Community Cloud</a> (not on Vercel serverless).</p>
+  <p>Vercel serves this FastAPI app. The interactive UI is <strong>Streamlit</strong> — run it locally or on
+     <a href="https://streamlit.io/cloud" rel="noopener">Streamlit Community Cloud</a>.</p>
   <p>Local run:</p>
   <pre>pip install -r requirements-pipeline.txt
 python main.py
 python -m streamlit run streamlit_app.py</pre>
-  <p>Static Plotly export: <a href="/dashboard">/dashboard</a> (only if <code>output/dashboard.html</code> exists in the deployment).</p>
+  <p>Static Plotly export: <a href="/dashboard">/dashboard</a> (if <code>output/dashboard.html</code> is deployed).</p>
 </body>
 </html>"""
 
 
 @app.get("/")
-async def index() -> HTMLResponse:
+def index() -> HTMLResponse:
     return HTMLResponse(_LANDING)
 
 
 @app.get("/dashboard")
-async def dashboard() -> FileResponse | HTMLResponse:
-    if DASHBOARD_HTML.is_file():
-        return FileResponse(DASHBOARD_HTML, media_type="text/html", filename="dashboard.html")
+def dashboard() -> HTMLResponse:
+    try:
+        if DASHBOARD_HTML.is_file():
+            html = DASHBOARD_HTML.read_text(encoding="utf-8")
+            return HTMLResponse(html)
+    except OSError:
+        pass
     return HTMLResponse(
-        "<p>No <code>output/dashboard.html</code> in this deployment. "
-        "Build it locally with <code>python main.py</code> and commit or upload the file if you need it here.</p>",
+        "<p>No <code>output/dashboard.html</code> in this deployment.</p>",
         status_code=404,
     )
 
 
 @app.get("/api/health")
-async def health() -> dict[str, str]:
+def health() -> dict[str, str]:
     return {"status": "ok"}

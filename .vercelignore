@@ -1,8 +1,21 @@
-# Shrink serverless upload (pipeline code is unused by app.py at runtime).
-data/
-output/
-.git/
-**/__pycache__/
+# Serverless bundle: only app.py + deps are needed at runtime.
+# Excluding pipeline code avoids stray imports and keeps uploads small.
+
+__pycache__/
 *.pyc
 .venv/
 venv/
+.git/
+data/
+output/
+
+main.py
+pipeline.py
+analysis/
+processing/
+scraping/
+utils/
+visualization/
+streamlit_app.py
+scripts/
+*.md
