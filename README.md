@@ -33,18 +33,11 @@ tourism_analysis/
 │   ├── feeds/         # sample Booking / TripAdvisor-style CSVs
 │   ├── external/      # extra CSVs (auto-loaded)
 │   └── kaggle/        # hotel_booking*.csv after download (gitignored)
-├── output/
-│   ├── clean_data.csv
-│   ├── enriched_listings.csv
-│   ├── results.csv
-│   ├── dashboard.html
-│   ├── viz/           # matplotlib PNGs
-│   └── insights/
+├── output/              # created by pipeline (gitignored except .gitkeep)
 ├── main.py              # CLI shim (runs pipeline)
 ├── pipeline.py          # full pipeline implementation
 ├── streamlit_app.py
-├── requirements.txt          # minimal (Vercel / FastAPI only)
-├── requirements-pipeline.txt # full local stack
+├── requirements.txt
 └── README.md
 ```
 
@@ -68,13 +61,9 @@ tourism_analysis/
 
 ### 1. Install
 
-**Local pipeline + Streamlit** (pandas, scikit-learn, Plotly, etc.):
-
 ```bash
-pip install -r requirements-pipeline.txt
+pip install -r requirements.txt
 ```
-
-The root **`requirements.txt`** only lists **FastAPI** so Vercel’s Python bundle stays under the Lambda size limit. Do not use it alone for `main.py` / Streamlit.
 
 ### 2. Environment (optional)
 
@@ -91,7 +80,7 @@ Copy `.env.example` to `.env` and set:
 python main.py
 ```
 
-Outputs: `output/clean_data.csv`, `enriched_listings.csv`, `results.csv`, `dashboard.html`, `output/viz/*.png`, `output/insights/*`.
+Outputs (under `output/`, not committed): `clean_data.csv`, `enriched_listings.csv`, `results.csv`, `dashboard.html`, `viz/*.png`, `insights/*`. Adapters also write `data/raw_*.csv` (gitignored).
 
 ### 4. Kaggle dataset (optional)
 
