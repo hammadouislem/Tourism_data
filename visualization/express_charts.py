@@ -20,21 +20,21 @@ def ensure_plotly_express() -> None:
 
 
 def apply_chart_theme(fig: object) -> object:
-    """Dark forest + cream text — matches Streamlit vert / T-GEN–style UI."""
-    cream = "#f5f0e6"
-    grid = "rgba(245, 240, 230, 0.12)"
+    """Light sage + charcoal — matches Streamlit beige / HIKE IT–style UI."""
+    charcoal = "#3d3d3a"
+    grid = "rgba(96, 140, 123, 0.18)"
     fig.update_layout(
-        template="plotly_dark",
-        font=dict(family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif", size=12, color=cream),
-        title=dict(font=dict(size=15, color=cream, family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif")),
-        paper_bgcolor="#141915",
-        plot_bgcolor="#1a221e",
+        template="plotly_white",
+        font=dict(family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif", size=12, color=charcoal),
+        title=dict(font=dict(size=15, color=charcoal, family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif")),
+        paper_bgcolor="rgba(255, 253, 208, 0.95)",
+        plot_bgcolor="#fffef2",
         margin=dict(t=52, l=52, r=28, b=48),
-        colorway=["#95d5b2", "#52b788", "#40916c", "#f4d35e", "#ee964b", "#74c69d", "#1b4332"],
-        legend=dict(font=dict(color=cream)),
+        colorway=["#608c7b", "#4a7c6a", "#7aaf9a", "#8fbcab", "#c4a574", "#5a7d72"],
+        legend=dict(font=dict(color=charcoal)),
     )
-    fig.update_xaxes(gridcolor=grid, zerolinecolor=grid, color=cream)
-    fig.update_yaxes(gridcolor=grid, zerolinecolor=grid, color=cream)
+    fig.update_xaxes(gridcolor=grid, zerolinecolor=grid, color=charcoal)
+    fig.update_yaxes(gridcolor=grid, zerolinecolor=grid, color=charcoal)
     return fig
 
 
@@ -69,7 +69,7 @@ def fig_top_locations(df: pd.DataFrame, top_n: int = 12) -> object:
         x="location",
         y="listings",
         color="listings",
-        color_continuous_scale=[[0, "#1b4332"], [0.5, "#40916c"], [1, "#95d5b2"]],
+        color_continuous_scale=[[0, "#4a7c6a"], [0.5, "#608c7b"], [1, "#9bc4b4"]],
         title=f"Top {len(g)} destinations by listing count",
         labels={"location": "Destination", "listings": "Number of listings"},
     )
@@ -116,7 +116,7 @@ def fig_price_histogram(df: pd.DataFrame, currency: str = "EUR") -> object:
         sub,
         x="price",
         nbins=min(45, max(15, int(n**0.5))),
-        color_discrete_sequence=["#52b788"],
+        color_discrete_sequence=["#608c7b"],
         title="Distribution of total price",
         labels={"price": f"Price ({currency})"},
     )
@@ -168,7 +168,7 @@ def fig_sentiment_histogram(df: pd.DataFrame) -> object:
         sub,
         x="sentiment_compound",
         nbins=32,
-        color_discrete_sequence=["#ee964b"],
+        color_discrete_sequence=["#8b7355"],
         title="Review sentiment (VADER compound)",
         labels={"sentiment_compound": "Compound score (−1 to +1)"},
     )

@@ -116,7 +116,7 @@ def build_dashboard_figure(
             y=popular["listings"],
             marker=dict(
                 color=green_bar,
-                colorscale=[[0, "#1b4332"], [0.5, "#40916c"], [1, "#95d5b2"]],
+                colorscale=[[0, "#4a7c6a"], [0.5, "#608c7b"], [1, "#9bc4b4"]],
                 showscale=False,
             ),
             name="Listings",
@@ -128,10 +128,10 @@ def build_dashboard_figure(
 
     if cluster_counts is not None and not cluster_counts.empty:
         palette = {
-            "budget": "#52b788",
-            "mid-range": "#f4d35e",
-            "premium": "#c084fc",
-            "unclassified": "#94a3b8",
+            "budget": "#608c7b",
+            "mid-range": "#c4a574",
+            "premium": "#7aaf9a",
+            "unclassified": "#9ca3af",
         }
         colors = [palette.get(str(t).lower(), "#64748b") for t in cluster_counts["tier"]]
         fig.add_trace(
@@ -170,12 +170,12 @@ def build_dashboard_figure(
             marker=dict(
                 size=7,
                 color=sub["rating"],
-                colorscale=[[0, "#1b4332"], [0.5, "#40916c"], [1, "#d8f3dc"]],
+                colorscale=[[0, "#4a7c6a"], [0.5, "#608c7b"], [1, "#d4e8e0"]],
                 opacity=0.45,
                 showscale=True,
                 colorbar=dict(
-                    title=dict(text="Rating", side="right", font=dict(color="#f5f0e6", size=11)),
-                    tickfont=dict(color="#f5f0e6"),
+                    title=dict(text="Rating", side="right", font=dict(color="#3d3d3a", size=11)),
+                    tickfont=dict(color="#3d3d3a"),
                 ),
             ),
             text=hover,
@@ -193,7 +193,7 @@ def build_dashboard_figure(
             go.Histogram(
                 x=cpd,
                 nbinsx=min(50, max(20, int(len(cpd) ** 0.5))),
-                marker_color="#52b788",
+                marker_color="#608c7b",
                 name="cpd",
                 showlegend=False,
             ),
@@ -205,7 +205,7 @@ def build_dashboard_figure(
         go.Histogram(
             x=df["rating"].dropna(),
             nbinsx=min(40, max(15, int(len(df) ** 0.25))),
-            marker_color="#74c69d",
+            marker_color="#7aaf9a",
             name="rating",
             showlegend=False,
         ),
@@ -221,7 +221,7 @@ def build_dashboard_figure(
             go.Histogram(
                 x=sc,
                 nbinsx=30,
-                marker_color="#ee964b",
+                marker_color="#8b7355",
                 name="sentiment",
                 showlegend=False,
             ),
@@ -236,11 +236,11 @@ def build_dashboard_figure(
         )
 
     title = (
-        f"Tourism analytics dashboard <span style='font-size:13px;color:#c4bdb0'>"
+        f"Tourism analytics dashboard <span style='font-size:13px;color:#6b6b66'>"
         f"({n_rows:,} listings · prices in {cur})</span>"
     )
     if corr_txt:
-        title += f"<br><span style='font-size:12px;color:#95d5b2'>{corr_txt}</span>"
+        title += f"<br><span style='font-size:12px;color:#4a7c6a'>{corr_txt}</span>"
 
     fig.update_layout(title_text=title, height=1180)
     fig.update_xaxes(tickangle=35, row=1, col=1)

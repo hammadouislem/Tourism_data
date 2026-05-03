@@ -29,10 +29,10 @@ def _label_cluster_tiers(centers_df: pd.DataFrame) -> dict:
 
 def _tier_colors() -> dict:
     return {
-        "budget": "#22c55e",
-        "mid-range": "#eab308",
-        "premium": "#a855f7",
-        "unclassified": "#94a3b8",
+        "budget": "#608c7b",
+        "mid-range": "#c4a574",
+        "premium": "#7aaf9a",
+        "unclassified": "#9ca3af",
     }
 
 

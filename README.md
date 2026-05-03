@@ -1,6 +1,6 @@
 # Tourism Listings — Data Analysis Pipeline
 
-**Authors:** HAMMADOU ISLEM · MOKKEDEM AKRAM · BOUKHELKHAL CHAMSEDDINE  
+**Authors:** HAMMADOU Islem, MOKEDDEM Akram, BOKHELKHAL Chameseddine  
 
 Modular pipeline for collecting, cleaning, analyzing, and visualizing tourism listings (scraping, CSV feeds, Kaggle-style exports), with ML clustering, recommendations, sentiment on reviews, and a Streamlit web app.
 

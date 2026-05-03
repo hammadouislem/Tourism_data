@@ -44,209 +44,248 @@ SUMMARY_CSV = os.path.join(ROOT, "output", "analysis_summary.csv")
 
 
 def inject_app_theme() -> None:
-    """Dark charcoal + deep forest green + cream text (T-GEN–style reference)."""
+    """Beige background + sage green accents (HIKE IT–style palette)."""
     st.markdown(
         """
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 :root {
-  --bg-app: #141915;
-  --bg-panel: #1a221e;
-  --green-deep: #1b4332;
-  --green-mid: #2d6a4f;
-  --cream: #f5f0e6;
-  --cream-muted: #c4bdb0;
-  --accent-mint: #95d5b2;
+  --bg-beige: #a8a899;
+  --sage: #608c7b;
+  --sage-dark: #4a7c6a;
+  --cream: #fffdd0;
+  --cream-soft: #fffef5;
+  --charcoal: #3d3d3a;
+  --muted: #6b6b66;
+  --tab-inactive-bg: #f2f0c8;
 }
 
 html, body, [class*="stApp"] {
   font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
-  background-color: var(--bg-app) !important;
-  color: var(--cream);
+  background-color: var(--bg-beige) !important;
+  color: var(--charcoal);
+}
+
+/* Main column: cream instead of default white shell */
+section.main > div {
+  background-color: var(--cream) !important;
+}
+[data-testid="stAppViewContainer"] {
+  background-color: var(--bg-beige) !important;
 }
 
 .block-container {
   padding-top: 1.25rem;
-  padding-bottom: 0.5rem;
-  max-width: 1320px;
+  padding-bottom: 1.5rem;
+  max-width: 1200px;
+  background: var(--cream);
+  border-radius: 20px;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  margin-top: 0.75rem;
+  box-shadow: 0 12px 40px rgba(61, 61, 58, 0.12);
+  border: 1px solid rgba(96, 140, 123, 0.22);
 }
 
-/* Main text & captions */
-.stMarkdown p, .stMarkdown li, .stMarkdown span, [data-testid="stCaption"] {
-  color: var(--cream-muted);
+/* Main text */
+.stMarkdown p, .stMarkdown li, [data-testid="stCaption"] {
+  color: var(--muted);
 }
 .stMarkdown h3, .stMarkdown h4, .stMarkdown h5 {
-  color: var(--cream) !important;
+  color: var(--charcoal) !important;
 }
 
+/* Hero: sage kicker on cream */
 .hero-wrap {
-  background: linear-gradient(145deg, #0d1f17 0%, var(--green-deep) 45%, var(--green-mid) 100%);
-  border-radius: 18px;
-  padding: 1.6rem 2rem 1.45rem;
-  margin: 0 0 1.35rem 0;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(149, 213, 178, 0.25);
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 1.5rem 1.75rem 1.35rem;
+  margin: 0 0 1.25rem 0;
+  box-shadow: 0 8px 32px rgba(61, 61, 58, 0.1);
+  border: 1px solid rgba(96, 140, 123, 0.35);
 }
 .hero-wrap h1 {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
-  font-size: clamp(1.45rem, 2.5vw, 1.95rem);
-  color: var(--cream);
-  margin: 0 0 0.4rem 0;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  color: var(--charcoal);
+  margin: 0 0 0.35rem 0;
+  letter-spacing: -0.02em;
   line-height: 1.2;
   border: none;
   padding: 0;
 }
 .hero-kicker {
-  font-size: 0.68rem;
+  display: inline-block;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--accent-mint);
-  margin: 0 0 0.45rem 0;
-  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  background: var(--sage);
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px 10px 10px 4px;
+  margin: 0 0 0.65rem 0;
+  font-weight: 700;
 }
 .hero-sub {
-  color: var(--cream-muted);
-  font-size: 0.92rem;
+  color: var(--muted);
+  font-size: 0.9rem;
   margin: 0;
   line-height: 1.55;
 }
 .hero-sub code {
-  background: rgba(13, 31, 23, 0.75);
-  color: var(--cream);
-  padding: 0.12rem 0.4rem;
+  background: rgba(255, 253, 208, 0.85);
+  color: var(--sage-dark);
+  padding: 0.1rem 0.4rem;
   border-radius: 6px;
   font-size: 0.85em;
-  border: 1px solid rgba(149, 213, 178, 0.2);
+  border: 1px solid rgba(96, 140, 123, 0.25);
+}
+.hero-authors {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.85rem 0 0 0;
+  line-height: 1.45;
+}
+.hero-authors strong {
+  color: var(--charcoal);
+  font-weight: 600;
 }
 
 [data-testid="stMetric"] {
-  background: linear-gradient(180deg, var(--bg-panel) 0%, #152018 100%);
-  border: 1px solid rgba(149, 213, 178, 0.2);
+  background: var(--cream-soft);
+  border: 1px solid rgba(96, 140, 123, 0.35);
   border-radius: 14px;
   padding: 0.75rem 0.9rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 16px rgba(61, 61, 58, 0.06);
 }
 [data-testid="stMetricLabel"] p {
   font-size: 0.7rem !important;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--cream-muted) !important;
+  letter-spacing: 0.06em;
+  color: var(--muted) !important;
   font-weight: 600 !important;
 }
 [data-testid="stMetricValue"] {
-  font-size: 1.28rem !important;
+  font-size: 1.25rem !important;
   font-weight: 700 !important;
-  color: var(--accent-mint) !important;
+  color: var(--sage-dark) !important;
 }
 
+/* Tabs: active = sage (HIKE IT), inactive = light grey */
 .stTabs [data-baseweb="tab-list"] {
-  gap: 8px;
-  background: rgba(27, 67, 50, 0.35);
+  gap: 6px;
+  background: var(--tab-inactive-bg);
   padding: 8px 10px;
   border-radius: 14px;
-  border: 1px solid rgba(149, 213, 178, 0.2);
+  border: 1px solid rgba(96, 140, 123, 0.2);
 }
 .stTabs [data-baseweb="tab"] {
-  border-radius: 10px;
-  padding: 0.55rem 1.1rem;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
   font-weight: 600;
-  font-size: 0.88rem;
-  color: var(--cream-muted);
+  font-size: 0.86rem;
+  color: var(--muted);
 }
 .stTabs [aria-selected="true"] {
-  background: var(--green-deep) !important;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-  color: var(--cream) !important;
-  border: 1px solid rgba(149, 213, 178, 0.35);
+  background: var(--sage) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(74, 124, 106, 0.25);
 }
 
 div[data-testid="stExpander"] details {
-  border: 1px solid rgba(149, 213, 178, 0.2);
+  border: 1px solid rgba(96, 140, 123, 0.3);
   border-radius: 12px;
-  background: var(--bg-panel);
+  background: var(--cream-soft);
 }
 div[data-testid="stExpander"] summary {
-  color: var(--cream);
+  color: var(--charcoal);
 }
 
 section[data-testid="stSidebar"] > div {
-  background: linear-gradient(180deg, #0f1f18 0%, var(--green-deep) 55%, #152a1f 100%) !important;
-  border-right: 1px solid rgba(149, 213, 178, 0.15);
+  background: linear-gradient(180deg, var(--cream) 0%, #f5f5c8 100%) !important;
+  border-right: 1px solid rgba(96, 140, 123, 0.25);
 }
-section[data-testid="stSidebar"] .stMarkdown h2,
+section[data-testid="stSidebar"] .stMarkdown h2 {
+  color: var(--sage-dark) !important;
+  font-weight: 700;
+}
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] span {
-  color: var(--cream) !important;
+  color: var(--charcoal) !important;
 }
 section[data-testid="stSidebar"] .stCaption {
-  color: var(--cream-muted) !important;
+  color: var(--muted) !important;
 }
 
 [data-testid="stPlotlyChart"] {
-  border: 1px solid rgba(149, 213, 178, 0.2);
+  border: 1px solid rgba(96, 140, 123, 0.28);
   border-radius: 14px;
   padding: 6px 8px 4px;
-  background: var(--bg-panel);
+  background: var(--cream-soft);
   margin-bottom: 0.35rem;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 18px rgba(61, 61, 58, 0.07);
 }
 
-/* Footer (T-GEN–style green band) */
+/* Footer: sage band, light text */
 .tgen-footer {
-  background: linear-gradient(180deg, var(--green-deep) 0%, #0f291c 100%);
-  color: var(--cream);
-  margin: 2.5rem 0 0;
-  padding: 2rem 0.5rem 0;
-  border-top: 1px solid rgba(149, 213, 178, 0.25);
-  border-radius: 0 0 12px 12px;
+  background: linear-gradient(180deg, var(--sage) 0%, var(--sage-dark) 100%);
+  color: #f8faf8;
+  margin: 2rem 0 0;
+  padding: 1.75rem 0.75rem 0;
+  border-radius: 0 0 16px 16px;
 }
 .tgen-footer-columns {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem 3rem;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
 }
 .tgen-col { flex: 1 1 200px; min-width: 180px; }
 .tgen-brand {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--cream);
-  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 0 0 0.45rem 0;
 }
 .tgen-desc, .tgen-col p, .tgen-col li {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   line-height: 1.55;
-  color: var(--cream-muted);
+  color: rgba(248, 250, 248, 0.88);
   margin: 0;
 }
 .tgen-col h4 {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--accent-mint);
-  margin: 0 0 0.65rem 0;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 0.55rem 0;
   font-weight: 700;
 }
 .tgen-col ul { list-style: none; padding: 0; margin: 0; }
-.tgen-col li { margin-bottom: 0.35rem; }
+.tgen-col li { margin-bottom: 0.3rem; }
 .tgen-footer-bar {
-  border-top: 1px solid rgba(245, 240, 230, 0.15);
-  padding: 0.85rem 1rem;
-  font-size: 0.75rem;
-  color: var(--cream-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 0.75rem 0.5rem;
+  font-size: 0.72rem;
+  color: rgba(248, 250, 248, 0.8);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  gap: 0.5rem 1.25rem;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+.tgen-footer code {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
 }
 </style>
         """,
@@ -255,7 +294,7 @@ section[data-testid="stSidebar"] .stCaption {
 
 
 def render_footer() -> None:
-    """Forest-green footer band inspired by T-GEN layout."""
+    """Sage footer band (HIKE IT–style)."""
     st.markdown(
         """
 <div class="tgen-footer">
@@ -276,7 +315,7 @@ def render_footer() -> None:
     </div>
     <div class="tgen-col">
       <h4>Contact</h4>
-      <p class="tgen-desc">Dataset & pipeline : voir README du projet.<br/>Lancer <code style="color:#f5f0e6;">python main.py</code> puis recharger l’app.</p>
+      <p class="tgen-desc">Dataset & pipeline : voir README du projet.<br/>Lancer <code>python main.py</code> puis recharger l’app.</p>
     </div>
   </div>
   <div class="tgen-footer-bar">
@@ -426,6 +465,7 @@ def main() -> None:
     Live pipeline view — refresh after <code>python main.py</code>.
     Prices in <strong>{cur}</strong> (<code>PRICE_CURRENCY</code> in <code>.env</code>).
   </p>
+  <p class="hero-authors"><strong>Authors:</strong> HAMMADOU Islem · MOKEDDEM Akram · BOKHELKHAL Chameseddine</p>
 </div>
         """,
         unsafe_allow_html=True,
