@@ -174,8 +174,8 @@ def build_dashboard_figure(
                 opacity=0.45,
                 showscale=True,
                 colorbar=dict(
-                    title=dict(text="Rating", side="right", font=dict(color="#3d3d3a", size=11)),
-                    tickfont=dict(color="#3d3d3a"),
+                    title=dict(text="Rating", side="right", font=dict(color="#111111", size=11)),
+                    tickfont=dict(color="#111111"),
                 ),
             ),
             text=hover,
@@ -236,11 +236,11 @@ def build_dashboard_figure(
         )
 
     title = (
-        f"Tourism analytics dashboard <span style='font-size:13px;color:#6b6b66'>"
+        f"Tourism analytics dashboard <span style='font-size:13px;color:#111111'>"
         f"({n_rows:,} listings · prices in {cur})</span>"
     )
     if corr_txt:
-        title += f"<br><span style='font-size:12px;color:#4a7c6a'>{corr_txt}</span>"
+        title += f"<br><span style='font-size:12px;color:#111111'>{corr_txt}</span>"
 
     fig.update_layout(title_text=title, height=1180)
     fig.update_xaxes(tickangle=35, row=1, col=1)

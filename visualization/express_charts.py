@@ -20,21 +20,45 @@ def ensure_plotly_express() -> None:
 
 
 def apply_chart_theme(fig: object) -> object:
-    """Light sage + charcoal — matches Streamlit beige / HIKE IT–style UI."""
-    charcoal = "#3d3d3a"
+    """Light sage + black body text — matches Streamlit theme."""
+    text = "#111111"
     grid = "rgba(96, 140, 123, 0.18)"
+    font_family = "Plus Jakarta Sans, Segoe UI, system-ui, sans-serif"
     fig.update_layout(
         template="plotly_white",
-        font=dict(family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif", size=12, color=charcoal),
-        title=dict(font=dict(size=15, color=charcoal, family="Plus Jakarta Sans, Segoe UI, system-ui, sans-serif")),
+        font=dict(family=font_family, size=12, color=text),
+        title=dict(font=dict(size=15, color=text, family=font_family)),
         paper_bgcolor="rgba(255, 253, 208, 0.95)",
         plot_bgcolor="#fffef2",
         margin=dict(t=52, l=52, r=28, b=48),
         colorway=["#608c7b", "#4a7c6a", "#7aaf9a", "#8fbcab", "#c4a574", "#5a7d72"],
-        legend=dict(font=dict(color=charcoal)),
+        legend=dict(font=dict(color=text), title_font=dict(color=text, size=12, family=font_family)),
+        hoverlabel=dict(
+            font=dict(color=text, family=font_family, size=12),
+            bgcolor="rgba(255, 253, 208, 0.98)",
+            bordercolor="rgba(96, 140, 123, 0.35)",
+        ),
     )
-    fig.update_xaxes(gridcolor=grid, zerolinecolor=grid, color=charcoal)
-    fig.update_yaxes(gridcolor=grid, zerolinecolor=grid, color=charcoal)
+    fig.update_xaxes(
+        gridcolor=grid,
+        zerolinecolor=grid,
+        tickfont=dict(color=text),
+        title_font=dict(color=text, family=font_family, size=13),
+    )
+    fig.update_yaxes(
+        gridcolor=grid,
+        zerolinecolor=grid,
+        tickfont=dict(color=text),
+        title_font=dict(color=text, family=font_family, size=13),
+    )
+    fig.update_annotations(font=dict(color=text, family=font_family, size=12))
+    fig.update_coloraxes(
+        colorbar=dict(
+            title=dict(font=dict(color=text, size=11, family=font_family), side="right"),
+            tickfont=dict(color=text, size=11, family=font_family),
+        )
+    )
+    fig.update_traces(textfont=dict(color=text), selector=dict(type="pie"))
     return fig
 
 

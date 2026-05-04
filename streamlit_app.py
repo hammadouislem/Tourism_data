@@ -56,8 +56,8 @@ def inject_app_theme() -> None:
   --sage-dark: #4a7c6a;
   --cream: #fffdd0;
   --cream-soft: #fffef5;
-  --charcoal: #3d3d3a;
-  --muted: #6b6b66;
+  --charcoal: #1a1a1a;
+  --muted: #141414;
   --tab-inactive-bg: #f2f0c8;
 }
 
@@ -96,14 +96,14 @@ section.main > div {
   color: var(--charcoal) !important;
 }
 
-/* Hero: sage kicker on cream */
+/* Hero: full sage band */
 .hero-wrap {
-  background: var(--cream);
+  background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
   border-radius: 16px;
   padding: 1.5rem 1.75rem 1.35rem;
   margin: 0 0 1.25rem 0;
-  box-shadow: 0 8px 32px rgba(61, 61, 58, 0.1);
-  border: 1px solid rgba(96, 140, 123, 0.35);
+  box-shadow: 0 8px 32px rgba(61, 61, 58, 0.18);
+  border: 1px solid rgba(255, 253, 208, 0.25);
 }
 .hero-wrap h1 {
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -121,18 +121,22 @@ section.main > div {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #ffffff;
-  background: var(--sage);
+  color: var(--sage-dark);
+  background: var(--cream-soft);
   padding: 0.35rem 0.75rem;
   border-radius: 10px 10px 10px 4px;
   margin: 0 0 0.65rem 0;
   font-weight: 700;
 }
 .hero-sub {
-  color: var(--muted);
+  color: var(--charcoal);
   font-size: 0.9rem;
   margin: 0;
   line-height: 1.55;
+}
+.hero-sub strong {
+  color: var(--charcoal);
+  font-weight: 600;
 }
 .hero-sub code {
   background: rgba(255, 253, 208, 0.85);
@@ -144,7 +148,7 @@ section.main > div {
 }
 .hero-authors {
   font-size: 0.82rem;
-  color: var(--muted);
+  color: var(--charcoal);
   margin: 0.85rem 0 0 0;
   line-height: 1.45;
 }
@@ -489,7 +493,7 @@ def main() -> None:
     m4.metric("Avg rating (filtered)", f"{filtered['rating'].mean():.2f}" if filtered["rating"].notna().any() else "—")
     m5.metric("Sources (all data)", df["source"].nunique() if "source" in df.columns else "—")
 
-    with st.expander("Dataset description (for slides / report)", expanded=False):
+    with st.expander("Dataset description", expanded=False):
         st.markdown(
             """
 ### What the rows represent
@@ -517,11 +521,6 @@ Each row is one **tourism listing** (hotel stay, package, or similar offer) afte
 - **Color (scatter)** — nominal split (type / source / location) without implying order.
 - **Pie / donut angles** — parts-of-whole for source mix (nominal shares).
 
-### Layout rationale
-The app uses a **wide Streamlit layout**: KPI metrics on top, **sidebar filters** for analytical context,
-and a dedicated **Explore** tab with a **two-column grid** so overview charts (destinations, mix) sit beside
-relationship and distribution plots. This follows a *overview → filter → detail* flow suited to a 10-minute demo:
-set filters, narrate one chart, then drill into another without scrolling excessively.
             """
         )
 
